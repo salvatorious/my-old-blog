@@ -1,0 +1,101 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Variables
+// font-family:'AdobeGaramondW01-Regula';
+// font-family:'Adobe Garamond W01 It';
+$base-font-family: 'AdobeGaramondW01-Regula', Helvetica, Arial, sans-serif;
+$garamond: 'AdobeGaramondW01-Regula', Georgia, serif;
+$aktiv-thin: 'Aktiv Grotesk W01 Thin';
+$aktiv-regular: 'Aktiv Grotesk W01 Regular';
+$aktiv-bold: 'Aktiv Grotesk W15 Bold';
+$aktiv-xbold: 'Aktiv Grotesk W01 XBold';
+$base-font-size:   16px;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     3vw;
+
+$text-color:       #111;
+$background-color: #fdfdfd;
+$brand-color:      #2a7ae2;
+
+$pewter:       #828282;
+$pewter-light: lighten($pewter, 40%);
+$pewter-dark:  darken($pewter, 25%);
+$wet-asphalt: #34495e;
+
+/* Typography
+-------------*/
+p {
+    font-family: $garamond;
+    font-size: 1.3em;
+    line-height: 1.7;
+}
+
+a {
+    font-family: $aktiv-regular;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: $aktiv-bold;
+}
+
+header {
+    a {
+        font-family: $aktiv-bold;
+    }
+}
+
+/* Mixins
+---------*/
+@mixin vertical-parent {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+@mixin vertical-center {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == "small" {
+        @media (max-width: 480px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "medium" {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+    
+    @else if $breakpoint == "extra-medium" {
+        @media (max-width: 950px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint == "large" {
+        @media (min-width: 769px) {
+            @content;
+        }
+    }
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+		"normalize",
+        "susy",
+        "base",
+        "layout",
+        "syntax-highlighting"
+;

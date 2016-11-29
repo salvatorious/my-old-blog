@@ -1,0 +1,14 @@
+# Site settings
+title: Salvatore's Log
+email: salvatore@nicetouch.co
+description: > # this means to ignore newlines until "baseurl:" 
+# needs to be filled out
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://salvatorious.com" # the base hostname & protocol for your site
+twitter_username: 3l3v3nsi3s
+github_username:  salvatorious
+
+# Build settings
+markdown: kramdown
+source: src
+destination: public

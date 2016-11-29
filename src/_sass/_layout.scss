@@ -1,0 +1,16 @@
+.container {
+	@include container(1024px);
+}
+.wrapper {
+	padding: 2em;
+}
+.site-header {
+	padding: 1em;
+}
+.site-footer {
+	@include container(1024px);	
+}
+.page-link {
+    padding: 0.5em 1em;
+    border-bottom: 1px solid;
+}

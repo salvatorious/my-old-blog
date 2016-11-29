@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Salvatore's Log</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 29 Nov 2016 11:36:45 -0800</pubDate>
+    <lastBuildDate>Tue, 29 Nov 2016 11:36:45 -0800</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Legendary Group Selector</title>
+        <description>&lt;p&gt;I wanted to make the setup for Legendary a little faster.&lt;/p&gt;
+
+&lt;p&gt;&lt;label&gt;Select number of players:&lt;/label&gt;
+&lt;select id=&quot;players&quot; onchange=&quot;clearData&quot;&gt;
+	&lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+	&lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+	&lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+	&lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+&lt;/select&gt;&lt;/p&gt;
+
+&lt;h2&gt;Heroes&lt;/h2&gt;
+&lt;p&gt;&lt;button onclick=&quot;pickHeroes();&quot;&gt;Pick Heroes&lt;/button&gt;&lt;/p&gt;
+&lt;div id=&quot;heroes&quot; class=&quot;result&quot;&gt;
+	
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h2&gt;Villains&lt;/h2&gt;
+&lt;p&gt;&lt;button onclick=&quot;pickVillains();&quot;&gt;Pick Villains&lt;/button&gt;&lt;/p&gt;
+&lt;div id=&quot;villains&quot; class=&quot;result&quot;&gt;
+	
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h2&gt;Henchmen&lt;/h2&gt;
+&lt;p&gt;&lt;button onclick=&quot;pickHenchmen();&quot;&gt;Pick Henchmen&lt;/button&gt;&lt;/p&gt;
+&lt;div id=&quot;henchmen&quot; class=&quot;result&quot;&gt;
+	
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h2&gt;Mastermind&lt;/h2&gt;
+&lt;p&gt;&lt;button onclick=&quot;pickMastermind();&quot;&gt;Pick Mastermind&lt;/button&gt;&lt;/p&gt;
+&lt;div id=&quot;mastermind&quot; class=&quot;result&quot;&gt;
+	
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h2&gt;Scheme&lt;/h2&gt;
+&lt;p&gt;&lt;button onclick=&quot;pickScheme();&quot;&gt;Pick Scheme&lt;/button&gt;&lt;/p&gt;
+&lt;div id=&quot;scheme&quot; class=&quot;result&quot;&gt;
+	
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;script&gt;
+	var players = document.getElementById('players');
+
+	function shuffle(array) {
+		var i = 0
+		, j = 0
+		, temp = null
+
+		for (i = array.length - 1; i &gt; 0; i -= 1) {
+			j = Math.floor(Math.random() * (i + 1))
+			temp = array[i]
+			array[i] = array[j]
+			array[j] = temp
+		}
+	}
+
+	function pickVillains(){
+		var numPlayers = players.options[players.selectedIndex].value;
+
+		if (numPlayers == 2) {
+			var counter = 2;
+		} else if (numPlayers == 3 || numPlayers == 4){
+			var counter = 3;
+		} else {
+			var counter = 4;
+		};
+
+		var villains = [
+			&quot;Spider-Foes&quot;,
+			&quot;Hydra&quot;,
+			&quot;Enemies of Asgard&quot;,
+			&quot;Masters of Evil&quot;,
+			&quot;Brotherhood&quot;
+		]
+
+		shuffle(villains);
+
+		var villainString = &quot;&quot;;
+
+		for(i=0;i&lt;counter;i++){
+			villainString += (villains[i].toString() + '&lt;br&gt;');
+		}
+		document.getElementById('villains').innerHTML = villainString;
+	}
+
+	function pickHenchmen(){
+		var numPlayers = players.options[players.selectedIndex].value;
+
+		if (numPlayers &lt; 4) {
+			var counter = 1;
+		} else {
+			var counter = 2;
+		};
+
+		var henchmen = [
+			&quot;Sentinels&quot;,
+			&quot;Doombots&quot;,
+			&quot;Savage Land Mutants&quot;,
+			&quot;Hand Ninjas&quot;
+		]
+
+		shuffle(henchmen);
+
+		var henchmenString = &quot;&quot;;
+
+		for(i=0;i&lt;counter;i++){
+			henchmenString += (henchmen[i].toString() + '&lt;br&gt;');
+		}
+		document.getElementById('henchmen').innerHTML = henchmenString;
+	}
+
+	function pickMastermind(){
+		var numPlayers = players.options[players.selectedIndex].value;
+
+		var masterminds = [
+			&quot;Dr. Doom&quot;,
+			&quot;Red Skull&quot;,
+			&quot;Magneto&quot;,
+			&quot;Loki&quot;
+		]
+
+		shuffle(masterminds);
+
+		var mmString = masterminds[0].toString();
+			
+		document.getElementById('mastermind').innerHTML = mmString;
+	}
+
+	function pickHeroes() {
+		var numPlayers = players.options[players.selectedIndex].value;
+
+		if (numPlayers == 5) {
+			var counter = 6;
+		} else {
+			var counter = 5;
+		};
+
+		var heroes = [
+			&quot;Nick Fury&quot;,
+			&quot;Hawkeye&quot;,
+			&quot;Thor&quot;,
+			&quot;Black Widow&quot;,
+			&quot;Iron Man&quot;,
+			&quot;The Hulk&quot;,
+			&quot;Wolverine&quot;,
+			&quot;Storm&quot;,
+			&quot;Cyclops&quot;,
+			&quot;Gambit&quot;,
+			&quot;Spider Douche&quot;,
+			&quot;Emma Frost&quot;,
+			&quot;Rogue&quot;,
+			&quot;Deadpool&quot;
+		];
+		
+		shuffle(heroes);
+
+		var heroString = &quot;&quot;;
+
+		for(i=0;i&lt;counter;i++){
+			heroString += (heroes[i].toString() + '&lt;br&gt;');
+			
+		}
+		document.getElementById('heroes').innerHTML = heroString;
+	}
+
+	function pickScheme() {
+		var schemes = [
+			&quot;The Legacy Virus&quot;,
+			&quot;Midtown Bank Robbery&quot;,
+			&quot;The Cosmic Cube&quot;,
+			&quot;Replace Earth's Leaders With Killbots&quot;,
+			&quot;Secret Invasion of the Skrull Shapeshifters&quot;,
+			&quot;Super Hero Civil War&quot;,
+			&quot;Negative Zone Prison Breakthrough&quot;,
+			&quot;Portals to the Dark Dimension&quot;
+		];
+		
+		shuffle(schemes);
+
+		var heroString = schemes[0].toString();
+			
+		document.getElementById('scheme').innerHTML = heroString;
+	}
+
+	function clearData() {
+		var results = document.querySelectorAll('.result');
+		for(i=0;i&lt;results.length;i++){
+			this.innerHTML = &quot;&quot;;	
+		}
+	}
+&lt;/script&gt;
+
+</description>
+        <pubDate>Sun, 23 Aug 2015 12:49:00 -0700</pubDate>
+        <link>http://localhost:4000/games/2015/08/23/legendary-group-selector.html</link>
+        <guid isPermaLink="true">http://localhost:4000/games/2015/08/23/legendary-group-selector.html</guid>
+        
+        
+        <category>games</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setEntries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;INITIAL_STATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./core'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reducer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;INITIAL_STATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'SET_ENTRIES'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setEntries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;entries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NEXT'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'VOTE'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'vote'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;voteState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;voteState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 22 Aug 2015 17:21:16 -0700</pubDate>
+        <link>http://localhost:4000/jekyll/update/2015/08/22/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2015/08/22/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>
